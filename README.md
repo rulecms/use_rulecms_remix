@@ -1,11 +1,12 @@
 # RuleCMS React Router Demo
 
-A comprehensive demonstration of RuleCMS widget integration with React Router, showcasing different rendering methods and modern web development patterns.
+A comprehensive demonstration of RuleCMS widget integration with React Router, showcasing different rendering methods and modern web development patterns. **[Live Demo →](https://use-rulecms-remix.vercel.app/)**
 
 ## 🚀 Live Demo
 
 Visit the live demo to see all rendering methods in action:
-- **Development**: `http://localhost:5173` (after running locally)
+- **Production**: https://use-rulecms-remix.vercel.app/
+- **Development**: `http://localhost:3000` (after running locally)
 
 ## 📋 Overview
 
@@ -17,6 +18,8 @@ This project demonstrates how to integrate RuleCMS widgets with a React Router a
 - **Framework Features** - Showcasing React Router capabilities
 
 Each demo includes detailed information about the rendering method, performance characteristics, use cases, and benefits.
+
+✨ **Now live on Vercel** with automatic deployments and global CDN distribution!
 
 ## 🛠️ Technology Stack
 
@@ -50,7 +53,7 @@ Each demo includes detailed information about the rendering method, performance 
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:3000`
 
 ## 📁 Project Structure
 
@@ -81,22 +84,22 @@ src/
 ### Rendering Method Demos
 Each route demonstrates a different rendering approach:
 
-1. **[CSR - Client-Side Rendering](http://localhost:5173/)**
+1. **[CSR - Client-Side Rendering](https://use-rulecms-remix.vercel.app/)**
    - Default React Router behavior
    - Dynamic client-side content generation
    - Fast page transitions
 
-2. **[SSR - Server-Side Rendering](http://localhost:5173/ssr)**
-   - Dynamic server-side data fetching
+2. **[SSR - Server-Side Rendering](https://use-rulecms-remix.vercel.app/ssr)**
+   - Dynamic server-side data fetching concepts
    - Improved SEO and initial load performance
-   - Request-specific content
+   - Request-specific content patterns
 
-3. **[SSG - Static Site Generation](http://localhost:5173/ssg)**
-   - Pre-rendered static content
+3. **[SSG - Static Site Generation](https://use-rulecms-remix.vercel.app/ssg)**
+   - Pre-rendered static content concepts
    - Maximum performance and SEO benefits
    - CDN-friendly deployment
 
-4. **[Features - React Router Capabilities](http://localhost:5173/features)**
+4. **[Features - React Router Capabilities](https://use-rulecms-remix.vercel.app/features)**
    - Framework feature showcase
    - Development advantages
    - Comparison with other solutions
@@ -140,23 +143,24 @@ npm run test         # Run tests (when configured)
 
 ## 🌐 Deployment
 
-### Static Hosting (Recommended)
-This project can be deployed to any static hosting service:
+### ✅ Live on Vercel
+This project is **successfully deployed** on Vercel:
+- **Production URL**: https://use-rulecms-remix.vercel.app/
+- **Auto-deployments**: Connected to Git repository
+- **Performance**: Optimized with CDN and edge caching
 
-- **Vercel**: Connect your GitHub repository for automatic deployments
+### Build Configuration
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist/`
+- **Framework**: Vite (auto-detected)
+- **Bundle Size**: ~423KB (133KB gzipped)
+
+### Other Hosting Options
+This project can also be deployed to:
 - **Netlify**: Drag and drop the `dist` folder or connect via Git
 - **GitHub Pages**: Use GitHub Actions for automated deployment
 - **AWS S3 + CloudFront**: For enterprise-grade hosting
-
-### Build Command
-```bash
-npm run build
-```
-
-### Output Directory
-```bash
-dist/
-```
+- **Railway/Render**: For more advanced server-side features
 
 ## 🔧 Customization
 
