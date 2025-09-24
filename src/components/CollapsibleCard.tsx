@@ -4,14 +4,18 @@ interface CollapsibleCardProps {
   title: string;
   children: React.ReactNode;
   defaultCollapsed?: boolean;
+  defaultExpanded?: boolean;
 }
 
 export function CollapsibleCard({ 
   title, 
   children, 
-  defaultCollapsed = true 
+  defaultCollapsed,
+  defaultExpanded 
 }: CollapsibleCardProps) {
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+  // If defaultExpanded is provided, use !defaultExpanded, otherwise use defaultCollapsed (default true)
+  const initialCollapsed = defaultExpanded !== undefined ? !defaultExpanded : (defaultCollapsed ?? true);
+  const [isCollapsed, setIsCollapsed] = useState(initialCollapsed);
 
   return (
     <div className="collapsible-card">

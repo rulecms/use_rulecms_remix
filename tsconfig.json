@@ -11,10 +11,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "verbatimModuleSyntax": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "importsNotUsedAsValues": "error"
+    "jsx": "react-jsx"
   },
   "include": ["./src"]
 }
