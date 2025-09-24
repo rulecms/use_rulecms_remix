@@ -1,5 +1,18 @@
 {
   "name": "use_rulecms_remix",
+  "version": "0.1.0",
+  "description": "Demonstration React Router app showing how to integrate RuleCMS widgets using @rulecms/widget-react package",
+  "keywords": [
+    "rulecms",
+    "react-router",
+    "remix",
+    "react",
+    "widgets",
+    "cms",
+    "demo"
+  ],
+  "author": "RuleCMS Team",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "tsc && vite build",
@@ -7,6 +20,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@rulecms/source-components-react": "^1.0.1",
+    "@rulecms/widget-react": "^1.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"
