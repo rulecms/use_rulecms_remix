@@ -4,6 +4,7 @@ import { CSR } from './routes/CSR';
 import { SSR } from './routes/SSR';
 import { SSG } from './routes/SSG';
 import { Features } from './routes/Features';
+import { rulecmsLibraries } from './lib/rulecms-libraries';
 import './styles.css';
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
     <RuleCMSWidgetProvider
       token={token}
       endpoint={endpoint}
+      libraries={rulecmsLibraries}
     >
       <div className="app">
         <Routes>
