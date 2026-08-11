@@ -20,7 +20,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@rulecms/source-components-react": "^20.12.0",
+    "@rulecms/source-components-react": "^20.13.0",
     "@rulecms/widget-react": "^22.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
