@@ -9,12 +9,10 @@ import './styles.css';
 
 export default function App() {
   const token = import.meta.env.VITE_RULECMS_TOKEN || 'lEYWhW85gwxHXj3cyomTsNra6MaXu8Q90aa1Q5zjNNVUdrGko7VYLZtMH5n9FI5E';
-  const endpoint = import.meta.env.VITE_RULECMS_ENDPOINT || 'https://rulecms.com';
 
   return (
     <RuleCMSWidgetProvider
       token={token}
-      endpoint={endpoint}
       libraries={rulecmsLibraries}
     >
       <div className="app">
