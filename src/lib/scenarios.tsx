@@ -1,0 +1,151 @@
+import type { ReactNode } from "react";
+
+export type Scenario = {
+  slug: string;
+  title: string;
+  details: ReactNode;
+};
+
+const composerBase =
+  "https://rulecms.com/app/d/orgs/75ef64a0-2e59-4c10-864d-e6a24704baf4/t/6ce05d39-3efb-41e7-bf42-66e8b3a2ec58/p/ba3bfabc-96d1-4d99-ae41-29c8c5af429b/e/0d872a3b-f98d-4051-a949-ffcb95834816/widgets";
+
+export const scenarios: Scenario[] = [
+  {
+    slug: "nested-collections",
+    title:
+      "Nested collections in one widget: shared collections, collections that contain shared collections, collections with embedded collections, and a widget with embedded collections",
+    details: (
+      <>
+        {`One widget renders every nested-collection case on this page.
+
+- Shared collections: collections that are shared so other collections and widgets can reuse them.
+- Collections that contain other shared collections: a collection whose contents are those shared collections.
+- Collections that have embedded collections: a collection with collections embedded inside it.
+- A widget that has embedded collections: the widget embeds collections directly, along with the cases above.
+
+All four show up in that single widget. Collection names and what to look for in the render can be filled in here once they exist.`}
+        <p>
+          Widget name:{" "}
+          <a href={`${composerBase}/f7c73214-df13-442c-bac2-dd02963584e5`}>
+            widget with shared and embedded nested collections
+          </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "text-component",
+    title: "Text component functionality in one server-rendered widget",
+    details: (
+      <>
+        {`One widget renders the text component so its authored text can be checked on this page.
+
+A second text in that widget can read a price the widget does not store. This page passes price as 65 when it renders, and {{ price }} in the text is replaced with that number.`}
+        <p>
+          Widget name:{" "}
+          <a href={`${composerBase}/ca33ecaf-3ea4-496f-b7dc-82f6d84e4425`}>
+            widget to test text component functionality
+          </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "collection-dynamic-price",
+    title:
+      "Contains a collection with a child collection with a dynamic price field",
+    details: (
+      <>
+        {`This widget contains a collection, and that collection contains a child collection.
+
+The child collection does not store a price. Its text has {{ price }}. This page passes price as $125 when it renders, and that value is filled in then.`}
+        <p>
+          Widget name:{" "}
+          <a href={`${composerBase}/3021dd09-5304-4a73-8a6e-1363e41a1ccc`}>
+            contains collection with a child collection with a dynamic price
+            field
+          </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "two-embedded-price-trees",
+    title: "Two embedded collection trees, each with its own price",
+    details: (
+      <>
+        {`This page renders a second widget, left separate from the single-price collection page.
+
+Each tree is embedded collections nested inside the widget. Neither tree stores a price. Both texts use {{ price }}. This page passes $125 to the first tree and $250 to the second, using each tree's embedding ids.`}
+        <p>
+          Widget name:{" "}
+          <a href={`${composerBase}/1145d101-ad67-4456-80b0-336a3fed80b5`}>
+            contains collection k3L7BE
+          </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "locale-ruleset",
+    title: "A ruleset chooses the German widget or the default widget",
+    details: (
+      <>
+        {`Two widgets are the outcomes of one locale ruleset.
+
+The German widget is for locale de-DE. The default widget is for every other locale. This page asks the ruleset twice: once with locale de-DE, and once with locale en-US.`}
+        <p>
+          German widget:{" "}
+          <a href={`${composerBase}/b1df87e5-f514-41dd-b78d-2f1ed8d5b917`}>
+            German widget
+          </a>
+        </p>
+        <p>
+          Default widget:{" "}
+          <a href={`${composerBase}/15db4490-4bf4-4657-8673-0376bc02dfe8`}>
+            Default widget
+          </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "nested-ruleset",
+    title: "A ruleset reads nested user and cart fields",
+    details: (
+      <>
+        {`Four widgets are the outcomes of one nested ruleset.
+
+The page sends user.plan, user.lastPurchaseAt, and cart.value inside one object. It asks the ruleset four times: Pro plan, a cart of 100, a purchase on 2026-06-01, and a free plan with a small cart. Rules run in that order, and the last case uses the default.`}
+        <p>
+          Pro plan:{" "}
+          <a href={`${composerBase}/9478fd05-9128-465d-91ef-76beae190e5c`}>
+            Pro plan
+          </a>
+        </p>
+        <p>
+          High cart:{" "}
+          <a href={`${composerBase}/97e0bd18-986d-488e-b03e-c998639fc41a`}>
+            High cart
+          </a>
+        </p>
+        <p>
+          Recent purchase:{" "}
+          <a href={`${composerBase}/9df39f41-dc78-4efa-96fd-020bad4b4f73`}>
+            Recent purchase
+          </a>
+        </p>
+        <p>
+          Default:{" "}
+          <a href={`${composerBase}/212b8685-75ee-4fac-b71e-f20239e2943e`}>
+            Default
+          </a>
+        </p>
+      </>
+    ),
+  },
+];
+
+export function getScenario(slug: string): Scenario | undefined {
+  return scenarios.find((scenario) => scenario.slug === slug);
+}

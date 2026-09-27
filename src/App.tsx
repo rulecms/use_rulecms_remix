@@ -1,28 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
-import { RuleCMSWidgetProvider } from '@rulecms/widget-react';
-import { CSR } from './routes/CSR';
-import { SSR } from './routes/SSR';
-import { SSG } from './routes/SSG';
-import { Features } from './routes/Features';
-import { rulecmsLibraries } from './lib/rulecms-libraries';
-import './styles.css';
+import { Route, Routes } from "react-router-dom";
+import { PagePayloadProvider } from "./lib/page-payload";
+import type { PagePayload } from "./lib/payload";
+import { Home } from "./routes/Home";
+import { ScenarioPage } from "./routes/ScenarioPage";
 
-export default function App() {
-  const token = import.meta.env.VITE_RULECMS_TOKEN || 'lEYWhW85gwxHXj3cyomTsNra6MaXu8Q90aa1Q5zjNNVUdrGko7VYLZtMH5n9FI5E';
-
+export default function App({ payload }: { payload: PagePayload | null }) {
   return (
-    <RuleCMSWidgetProvider
-      token={token}
-      libraries={rulecmsLibraries}
-    >
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<CSR />} />
-          <Route path="/ssr" element={<SSR />} />
-          <Route path="/ssg" element={<SSG />} />
-          <Route path="/features" element={<Features />} />
-        </Routes>
-      </div>
-    </RuleCMSWidgetProvider>
+    <PagePayloadProvider payload={payload}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/scenarios/:slug/:mode" element={<ScenarioPage />} />
+      </Routes>
+    </PagePayloadProvider>
   );
 }
