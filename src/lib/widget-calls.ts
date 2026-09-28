@@ -6,8 +6,21 @@ export type WidgetCall = {
   code: string;
 };
 
+function sampleAccess(parts: string[]): string {
+  // Kept in pieces so Vite does not replace this sample text during the build.
+  return parts.join(".");
+}
+
+function sampleEnv(name: string): string {
+  return sampleAccess(["import", "meta", "env", name]);
+}
+
+function sampleProcessEnv(name: string): string {
+  return sampleAccess(["process", "env", name]);
+}
+
 function quoted(value: string | undefined, envName: string): string {
-  return value ? `"${value}"` : `{import.meta.env.${envName}}`;
+  return value ? `"${value}"` : `{${sampleEnv(envName)}}`;
 }
 
 function librariesLine(): string {
@@ -37,7 +50,7 @@ function paramsLiteral(params: Record<string, unknown> | undefined): string {
 function instanceLines(instance: WidgetInstance, mode: RenderMode): string[] {
   const lines: string[] = [];
   if (mode === "csr") {
-    lines.push("token={import.meta.env.VITE_RULECMS_TOKEN}");
+    lines.push(`token={${sampleEnv("VITE_RULECMS_TOKEN")}}`);
   } else {
     lines.push('mode="pre-fetched"');
     lines.push("initialData={widgetData}");
@@ -81,7 +94,7 @@ function fetchBlock(instance: WidgetInstance): string {
   const target = instance.rulesetPublishedKey
     ? `rulesetPublishedKey: ${quoted(instance.rulesetPublishedKey, instance.missingEnv[0] ?? "VITE_RULECMS_RULESET_KEY")},\n  params: ${JSON.stringify(instance.params)}`
     : `publishedKey: ${quoted(instance.publishedKey, instance.missingEnv[0] ?? "VITE_RULECMS_WIDGET_KEY")}`;
-  return `const widgetData = await fetchRuleCMSWidget({\n  token: process.env.VITE_RULECMS_TOKEN,\n  ${target},\n  fetchOptions: { cache: "no-store" },\n});`;
+  return `const widgetData = await fetchRuleCMSWidget({\n  token: ${sampleProcessEnv("VITE_RULECMS_TOKEN")},\n  ${target},\n  fetchOptions: { cache: "no-store" },\n});`;
 }
 
 const sharedWhy =
