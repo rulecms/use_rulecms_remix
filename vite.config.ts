@@ -14,7 +14,9 @@ export default defineConfig({
     },
   },
   ssr: {
-    noExternal: ["@rulecms/widget-react", "@rulecms/source-components-react"],
+    // Bundle dependencies into the server file. Leave React external so Node
+    // can load react-dom/server without Vite trying to inline Node built-ins.
+    noExternal: /^(?!react$|react-dom$|react-router-dom$).+/,
   },
   plugins: [
     rollupReplace({
