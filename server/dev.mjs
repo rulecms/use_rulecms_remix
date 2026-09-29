@@ -3,14 +3,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
+import { applyTemplate } from "./html.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const port = 3001;
-
-function payloadScript(payload) {
-  const json = JSON.stringify(payload).replace(/</g, "\\u003c");
-  return `<script type="application/json" id="rulecms-payload">${json}</script>`;
-}
 
 async function start() {
   const app = express();
@@ -27,9 +23,7 @@ async function start() {
       template = await vite.transformIndexHtml(url, template);
       const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
       const rendered = await render(url);
-      const html = template
-        .replace("<!--app-html-->", rendered.html)
-        .replace("<!--payload-->", payloadScript(rendered.payload));
+      const html = applyTemplate(template, rendered);
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (error) {
       vite.ssrFixStacktrace(error);

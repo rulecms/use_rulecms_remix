@@ -8,6 +8,11 @@ export default defineConfig({
   server: {
     port: 3001,
   },
+  css: {
+    modules: {
+      generateScopedName: "[name]__[local]",
+    },
+  },
   ssr: {
     noExternal: ["@rulecms/widget-react", "@rulecms/source-components-react"],
   },
